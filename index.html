@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa Vacanze Trevi</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-size: cover;
+      overflow-x: hidden;
+      transition: background-image 1s ease-in-out;
+    }
+
+    /* SFONDO DINAMICO (Carosello) */
+    .background-carousel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      animation: rotateBackground 20s infinite;
+    }
+
+    @keyframes rotateBackground {
+      0% {
+        background-image: url('sfondo1.jpg');
+      }
+      25% {
+        background-image: url('sfondo2.jpg');
+      }
+      50% {
+        background-image: url('sfondo3.jpg');
+      }
+      75% {
+        background-image: url('sfondo4.jpg');
+      }
+      100% {
+        background-image: url('sfondo1.jpg');
+      }
+    }
+
+    /* MENU DI NAVIGAZIONE (a destra) */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      margin-right: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #ff7e5f;
+    }
+
+    /* LOGO */
+    .logo {
+      max-width: 150px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+    }
+
+    /* LINGUA CON BANDIERINE */
+    .lang {
+      display: flex;
+      align-items: center;
+    }
+
+    .lang img {
+      cursor: pointer;
+      width: 30px;
+      margin-left: 10px;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .lang img:hover {
+      transform: scale(1.2);
+    }
+
+    .lang span {
+      font-size: 18px;
+      color: white;
+      margin-left: 5px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .lang span:hover {
+      color: #ff7e5f;
+    }
+
+    /* TITOLO */
+    .title {
+      text-align: center;
+      color: white;
+      font-size: 36px;
+      margin-top: 80px;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    /* FOTO GALLERY */
+    .photo-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .photo {
+      width: 32%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .photo img {
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .caption {
+      color: white;
+      margin-top: 5px;
+      text-shadow: 1px 1px 5px black;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    /* FORM */
+    form {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    h2, label {
+      color: white;
+      text-shadow: 1px 1px 5px black;
+    }
+
+    input, textarea {
+      width: 320px;
+      padding: 12px;
+      margin: 10px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* WHATSAPP */
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+    }
+
+    .whatsapp img {
+      width: 100%;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- SFONDO DINAMICO -->
+<div class="background-carousel"></div>
+
+<!-- MENU DI NAVIGAZIONE -->
+<div class="navbar">
+  <img src="logo.png" class="logo">
+  <a href="#home" id="home-link">Home</a>
+  <a href="#gallery" id="gallery-link">Gallery</a>
+  <a href="#contact" id="contact-link">Contattaci</a>
+  <div class="lang">
+    <img src="italian-flag.png" alt="Italiano" onclick="setLang('it')">
+    <span>IT</span>
+    <img src="english-flag.png" alt="Inglese" onclick="setLang('en')">
+    <span>ING</span>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="home">
+  <div class="title" id="title">
+    Casa Vacanze Trevi - Richiedi Disponibilità
+  </div>
+  <!-- Inserisci il testo personalizzato per la home qui -->
+  <div id="home-text" style="color: white; font-size: 20px; margin-top: 20px; text-align: center;">
+    <p>Benvenuti alla nostra casa vacanze! Scopri la bellezza del nostro alloggio e prenota la tua vacanza da sogno.</p>
+  </div>
+</div>
+
+<!-- FOTO GALLERY -->
+<div id="gallery" class="photo-container">
+  <div class="photo">
+    <img src="foto1.jpg" onclick="openLightbox(this.src)">
+    <div class="caption" id="cap1">Clicca per ingrandire</div>
+  </div>
+
+  <div class="photo">
+    <img src="foto2.jpg" onclick="openLightbox(this.src)">
+    <div class="caption" id="cap2">Clicca per ingrandire</div>
+  </div>
+
+  <div class="photo">
+    <img src="foto3.jpg" onclick="openLightbox(this.src)">
+    <div class="caption" id="cap3">Clicca per ingrandire</div>
+  </div>
+</div>
+
+<!-- FORM CONTATTI -->
+<div id="contact">
+  <form id="form">
+    <h2 id="formTitle">Richiedi Disponibilità</h2>
+
+    <input type="text" name="nome" id="nome" placeholder="Nome" required><br>
+    <input type="text" name="cognome" id="cognome" placeholder="Cognome" required><br>
+    <input type="email" name="email" id="email" placeholder="Email" required><br>
+    <input type="tel" name="telefono" id="telefono" placeholder="Telefono" required><br>
+
+    <label id="arrivo">Data arrivo</label><br>
+    <input type="date" name="arrivo"><br>
+
+    <label id="partenza">Data partenza</label><br>
+    <input type="date" name="partenza"><br>
+
+    <textarea name="note" id="note" placeholder="Richieste speciali"></textarea><br>
+
+    <button type="submit" id="btn">Invia richiesta</button>
+  </form>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="close" onclick="closeLightbox()">×</span>
+  <img id="lightbox-img">
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/1234567890" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png">
+</a>
+
+<script>
+  /* LIGHTBOX */
+  function openLightbox(src) {
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("lightbox-img").src = src;
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  document.getElementById("lightbox").addEventListener("click", function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  /* LINGUA */
+  function setLang(lang) {
+    if(lang === "en") {
+      title.innerText = "Trevi Holiday Home - Check Availability";
+      formTitle.innerText = "Check Availability";
+      nome.placeholder = "First Name";
+      cognome.placeholder = "Last Name";
+      telefono.placeholder = "Phone";
+      arrivo.innerText = "Arrival date";
+      partenza.innerText = "Departure date";
+      note.placeholder = "Special requests";
+      btn.innerText = "Send request";
+      homeLink.innerText = "Home";
+      galleryLink.innerText = "Gallery";
+      contactLink.innerText = "Contact Us";
+
+      cap1.innerText = "Click to enlarge";
+      cap2.innerText = "Click to enlarge";
+      cap3.innerText = "Click to enlarge";
+    } else {
+      location.reload();
+    }
+  }
+
+  /* GOOGLE SCRIPT */
+  const scriptURL = "https://script.google.com/macros/s/TUO_SCRIPT_ID/exec";
+  const formEl = document.getElementById("form");
+
+  formEl.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(scriptURL, {
+      method: "POST",
+      body: new FormData(formEl)
+    })
+    .then(() => alert("Richiesta inviata!"))
+    .catch(() => alert("Errore invio"));
+  });
+</script>
+
+</body>
+</html>
